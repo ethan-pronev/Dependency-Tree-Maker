@@ -12,3 +12,6 @@ for (let i=0; i<input.length; i++) {
 }
 
 console.log(output);
+
+//optionally, write to file output.json
+//fs.writeFileSync('output.json', JSON.stringify(output, null, 2) , 'utf-8');

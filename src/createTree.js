@@ -2,21 +2,23 @@
 
 const fs = require('fs');
 
-//reading the two json files to be used later on for conversion
-const coreModules = require('../data/core-modules.json');
-const moduleDistroMap = require('../data/module-distro-map.json');
-
 //initializes a dependency tree for each distro in the data folder
 //prevents having to compute the same tree twice
 let distroTrees = require('./initTrees');
 
-function createDependencyTree(distroName) {
-    if (distroTrees[distroName] != undefined) return distroTrees[distroName];
+//converts module names to their parent distro name
+const moduleToDistro = require('./moduleToDistro')
 
+function createDependencyTree(distroName) {
+    //if this tree was already computed for a previous subtask, we don't have to compute it again
+    if (distroTrees[distroName] != undefined) return distroTrees[distroName];
     const distroMetadata = JSON.parse(fs.readFileSync(`../data/${distroName}/META.json`));
-    if (distroMetadata === undefined) {
-        ;//throw error: distro not found in ../data
-    }
+    //this should throw error: no such file/directory if the distro was not found in ../data
+
+    //if this distro doesn't have a prereqs.runtime.requires key, there are no dependencies, so return an empty object
+    if (!("prereqs" in distroMetadata) ||
+        !("runtime" in distroMetadata.prereqs) ||
+        !("requires" in distroMetadata.prereqs.runtime)) return {};
 
     //when we convert required modules into required distros below, we store the distros in a set to avoid repeats
     let requiredDistroSet = new Set();
@@ -25,16 +27,17 @@ function createDependencyTree(distroName) {
     for (const [key,value] of Object.entries(requiredModules)) {
         requiredDistroSet.add(moduleToDistro(key));
     }
-    console.log(requiredDistroSet);
-    
-    //at the end, return distroTrees[distroName] = distroTree; (distroTree is the tree we construct for distroName)
-}
 
-function moduleToDistro(module) {
-    return module;
-    //edit this function to convert module to its parent distro
+    //the tree construct for the current distro
+    let distroTree = {};
+    for (let requiredDistro of requiredDistroSet) {
+        if (requiredDistro === null) continue; //this happens when moduleToDistro encounters either a module in core-modules or 'perl'
+        distroTree[requiredDistro] = createDependencyTree(requiredDistro);
+    }
 
-    //error: unknown module if module not found in either core-modules or module-distro-map
+    //memoization step: store tree for distroName to be accessed later if needed
+    distroTrees[distroName] = distroTree;
+    return distroTree;
 }
 
 module.exports = createDependencyTree;
