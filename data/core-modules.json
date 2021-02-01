@@ -656,4 +656,11 @@
    "vmsish",
    "warnings",
    "warnings::register"
+
+   
+   ,"~MYTEST-CORE1",
+   "~MYTEST-CORE2",
+   "~MYTEST-CORE3",
+   "~MYTEST-CORE4",
+   "~MYTEST-CORE5"
 ]

@@ -7,13 +7,18 @@ const fs = require('fs');
 let distroTrees = require('./initTrees');
 
 //converts module names to their parent distro name
-const moduleToDistro = require('./moduleToDistro')
+const moduleToDistro = require('./moduleToDistro');
 
 function createDependencyTree(distroName) {
     //if this tree was already computed for a previous subtask, we don't have to compute it again
     if (distroTrees[distroName] != undefined) return distroTrees[distroName];
-    const distroMetadata = JSON.parse(fs.readFileSync(`../data/${distroName}/META.json`));
-    //this should throw error: no such file/directory if the distro was not found in ../data
+
+    //tries to find the current distro's metadata, throws an error if not found, otherwise reads the metadata
+    //${__dirname} is required before the directory for the tests in test.spec.js to work properly
+    if (!(fs.existsSync(`${__dirname}/../data/${distroName}/META.json`))) {
+        throw new Error(`Could not find metadata for distro "${distroName}"`)
+    }
+    const distroMetadata = JSON.parse(fs.readFileSync(`${__dirname}/../data/${distroName}/META.json`));
 
     //if this distro doesn't have a prereqs.runtime.requires key, there are no dependencies, so return an empty object
     if (!("prereqs" in distroMetadata) ||

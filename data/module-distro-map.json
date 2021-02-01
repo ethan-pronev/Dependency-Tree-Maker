@@ -1019,4 +1019,22 @@
    "namespace::autoclean" : "namespace-autoclean",
    "namespace::clean" : "namespace-clean",
    "oose" : "Moose"
+
+
+   ,"~MYTEST-A1" : "~MYTEST-A",
+   "~MYTEST-A2" : "~MYTEST-A",
+   "~MYTEST-A3" : "~MYTEST-A",
+   "~MYTEST-B1" : "~MYTEST-B",
+   "~MYTEST-B2" : "~MYTEST-B",
+   "~MYTEST-B3" : "~MYTEST-B",
+   "~MYTEST-C1" : "~MYTEST-C",
+   "~MYTEST-C2" : "~MYTEST-C",
+   "~MYTEST-C3" : "~MYTEST-C",
+   "~MYTEST-D1" : "~MYTEST-D",
+   "~MYTEST-D2" : "~MYTEST-D",
+   "~MYTEST-D3" : "~MYTEST-D",
+   "~MYTEST-E1" : "~MYTEST-E",
+   "~MYTEST-E2" : "~MYTEST-E",
+   "~MYTEST-E3" : "~MYTEST-E",
+   "~MYTEST-G1" : "~MYTEST-G"
 }

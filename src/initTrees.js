@@ -4,8 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Get list of distro names in the data directory
-let directoryName = '../data'
-let distroNames = fs.readdirSync(directoryName);
+let distroNames = fs.readdirSync(`${__dirname}/../data`);
 
 let distroObj = {};
 distroNames.forEach((distro) => { 

@@ -1,0 +1,14 @@
+{
+   "prereqs" : {
+      "runtime" : {
+         "requires" : {
+            "~MYTEST-B1" : "0",
+            "~MYTEST-B2" : "0",
+            "~MYTEST-C2" : "0",
+            "~MYTEST-C3" : "0",
+            "~MYTEST-CORE2" : "0",
+            "~MYTEST-CORE5" : "0"
+         }
+      }
+   }
+}

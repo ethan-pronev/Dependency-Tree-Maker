@@ -1,0 +1,10 @@
+{
+   "prereqs" : {
+      "runtime" : {
+         "requires" : {
+            "~MYTEST-B3" : "0",
+            "~MYTEST-G1" : "0"
+         }
+      }
+   }
+}

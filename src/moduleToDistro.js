@@ -9,7 +9,8 @@ function moduleToDistro(module) {
 
     if (module in moduleDistroMap) return moduleDistroMap[module];
 
-    //add error: unknown module if module not found in either core-modules or module-distro-map
+    //if module is not a core module or is not in module-distro-map:
+    throw new Error(`Could not find the parent distro to module "${module}"`);
 }
 
-module.exports= moduleToDistro;
+module.exports = moduleToDistro;

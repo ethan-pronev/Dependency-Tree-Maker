@@ -1,0 +1,23 @@
+{
+  "name": "activestate-assignment",
+  "version": "1.0.0",
+  "description": "This application runs in the Node.js environment. Ensure the latest version of Node is installed.\r 1. Navigate to /ActiveState-Assignment and install all required packages:\r ```sh\r npm install\r ```\r 2. The metadata for every distro is located in /ActiveState-Assignment/data. Choose which of these you would like to create dependency trees for.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha './test/*.spec.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ethan-pronev/ActiveState-Assignment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ethan-pronev/ActiveState-Assignment/issues"
+  },
+  "homepage": "https://github.com/ethan-pronev/ActiveState-Assignment#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
+  }
+}
